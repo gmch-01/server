@@ -13,7 +13,10 @@ class IndexRoutes {
 
     config(): void {
         this.router.get('/', usuariosController.list)
+        this.router.get('/:id', usuariosController.getOne)
         this.router.post('/', usuariosController.create)
+        this.router.delete('/:id', usuariosController.delete)
+        this.router.put('/:id', usuariosController.update)
     }
 }
 
