@@ -34,21 +34,21 @@ class UsuariosController {
         });
     }
     create(req, res) {
-        database_1.default.query('INSERT INTO insumo set ?', [req.body]);
+        database_1.default.query('INSERT INTO usuario set ?', [req.body]);
         console.log(req.body);
-        res.json({ message: 'insumo guardado' });
+        res.json({ message: 'usuario guardado' });
     }
     delete(req, res) {
         return __awaiter(this, void 0, void 0, function* () {
             const { id } = req.params;
-            yield database_1.default.promise().query('DELETE FROM insumo WHERE id_insumo = ?', [id]);
+            yield database_1.default.promise().query('DELETE FROM usuario WHERE ci_persona = ?', [id]);
             res.json({ message: 'Juego Eliminado' });
         });
     }
     update(req, res) {
         return __awaiter(this, void 0, void 0, function* () {
             const { id } = req.params;
-            yield database_1.default.promise().query('UPDATE insumo set ? WHERE id_insumo= ?', [req.body, id]);
+            yield database_1.default.promise().query('UPDATE usuario set ? WHERE ci_persona= ?', [req.body, id]);
             res.json({ message: 'insumo actualizando ' });
         });
     }

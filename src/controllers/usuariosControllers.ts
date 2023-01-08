@@ -20,20 +20,20 @@ class UsuariosController {
     }
 
     public create(req: Request, res: Response) {
-        pool.query('INSERT INTO insumo set ?', [req.body])
+        pool.query('INSERT INTO usuario set ?', [req.body])
         console.log(req.body);
-        res.json({ message: 'insumo guardado' })
+        res.json({ message: 'usuario guardado' })
     }
 
     public async delete(req: Request, res: Response) {
         const { id } = req.params;
-        await pool.promise().query('DELETE FROM insumo WHERE id_insumo = ?', [id])
+        await pool.promise().query('DELETE FROM usuario WHERE ci_persona = ?', [id])
         res.json({ message: 'Juego Eliminado' })
     }
 
     public async update(req: Request, res: Response): Promise<void> {
         const { id } = req.params;
-        await pool.promise().query('UPDATE insumo set ? WHERE id_insumo= ?', [req.body, id])
+        await pool.promise().query('UPDATE usuario set ? WHERE ci_persona= ?', [req.body, id])
         res.json({ message: 'insumo actualizando ' })
     }
 }
