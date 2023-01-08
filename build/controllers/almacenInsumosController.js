@@ -12,45 +12,45 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.gamesController = void 0;
+exports.almacenInsumoController = void 0;
 const database_1 = __importDefault(require("../database"));
-class GamesController {
+class AlmacenInsumoController {
     list(req, res) {
         return __awaiter(this, void 0, void 0, function* () {
-            const [insumos] = yield database_1.default.promise().query('SELECT * FROM insumo');
-            res.json(insumos);
+            const [almaceninsumo] = yield database_1.default.promise().query('SELECT * FROM kardex_insumo ');
+            res.json(almaceninsumo);
         });
     }
     getOne(req, res) {
         return __awaiter(this, void 0, void 0, function* () {
             const { id } = req.params;
-            const insumo = yield database_1.default.promise().query('SELECT * FROM insumo WHERE id_insumo = ?', [id]);
-            if (insumo.length > 0) {
-                return res.json(insumo[0]);
+            const almaceninsumo = yield database_1.default.promise().query('SELECT * FROM kardex_insumo WHERE id_det_insumo = ?', [id]);
+            if (almaceninsumo.length > 0) {
+                return res.json(almaceninsumo[0]);
             }
-            res.status(404).json({ text: "El insumo no existe" });
-            console.log(insumo);
-            res.json({ text: 'insumo encontrado ' });
+            res.status(404).json({ text: "El registro de insumo no existe" });
+            console.log(almaceninsumo);
+            res.json({ text: 'registro de insumo encontrado ' });
         });
     }
     create(req, res) {
-        database_1.default.query('INSERT INTO insumo set ?', [req.body]);
+        database_1.default.query('INSERT INTO inventario_insumo set ?', [req.body]);
         console.log(req.body);
-        res.json({ message: 'insumo guardado' });
+        res.json({ message: 'registro de insumo guardado' });
     }
     delete(req, res) {
         return __awaiter(this, void 0, void 0, function* () {
             const { id } = req.params;
-            yield database_1.default.promise().query('DELETE FROM insumo WHERE id_insumo = ?', [id]);
-            res.json({ message: 'Insumo Eliminado' });
+            yield database_1.default.promise().query('DELETE FROM kardex_insumo WHERE id_det_insumo = ?', [id]);
+            res.json({ message: 'Registro Eliminado' });
         });
     }
     update(req, res) {
         return __awaiter(this, void 0, void 0, function* () {
             const { id } = req.params;
-            yield database_1.default.promise().query('UPDATE insumo set ? WHERE id_insumo= ?', [req.body, id]);
-            res.json({ message: 'insumo actualizando ' });
+            yield database_1.default.promise().query('UPDATE kardex_insumo set ? WHERE id_det_insumo= ?', [req.body, id]);
+            res.json({ message: 'Registro actualizando ' });
         });
     }
 }
-exports.gamesController = new GamesController();
+exports.almacenInsumoController = new AlmacenInsumoController();

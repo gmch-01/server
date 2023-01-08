@@ -15,9 +15,9 @@ class GamesController {
         if (insumo.length > 0) {
             return res.json(insumo[0]);
         }
-        res.status(404).json({ text: "El juego no existe" })
+        res.status(404).json({ text: "El insumo no existe" })
         console.log(insumo)
-        res.json({ text: 'juego encontrado ' })
+        res.json({ text: 'insumo encontrado ' })
     }
 
     public create(req: Request, res: Response) {
@@ -29,7 +29,7 @@ class GamesController {
     async delete(req: Request, res: Response) {
         const { id } = req.params;
         await pool.promise().query('DELETE FROM insumo WHERE id_insumo = ?', [id])
-        res.json({ message: 'Juego Eliminado' })
+        res.json({ message: 'Insumo Eliminado' })
     }
 
     public async update(req: Request, res: Response): Promise<void> {

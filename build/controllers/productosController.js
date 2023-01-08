@@ -12,45 +12,45 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.gamesController = void 0;
+exports.productosController = void 0;
 const database_1 = __importDefault(require("../database"));
-class GamesController {
+class ProductosController {
     list(req, res) {
         return __awaiter(this, void 0, void 0, function* () {
-            const [insumos] = yield database_1.default.promise().query('SELECT * FROM insumo');
-            res.json(insumos);
+            const [producto] = yield database_1.default.promise().query('SELECT * FROM producto');
+            res.json(producto);
         });
     }
     getOne(req, res) {
         return __awaiter(this, void 0, void 0, function* () {
             const { id } = req.params;
-            const insumo = yield database_1.default.promise().query('SELECT * FROM insumo WHERE id_insumo = ?', [id]);
-            if (insumo.length > 0) {
-                return res.json(insumo[0]);
+            const producto = yield database_1.default.promise().query('SELECT * FROM producto WHERE id_producto = ?', [id]);
+            if (producto.length > 0) {
+                return res.json(producto[0]);
             }
-            res.status(404).json({ text: "El insumo no existe" });
-            console.log(insumo);
-            res.json({ text: 'insumo encontrado ' });
+            res.status(404).json({ text: "El producto no existe" });
+            console.log(producto);
+            res.json({ text: 'producto encontrado ' });
         });
     }
     create(req, res) {
-        database_1.default.query('INSERT INTO insumo set ?', [req.body]);
+        database_1.default.query('INSERT INTO producto set ?', [req.body]);
         console.log(req.body);
-        res.json({ message: 'insumo guardado' });
+        res.json({ message: 'Producto guardado' });
     }
     delete(req, res) {
         return __awaiter(this, void 0, void 0, function* () {
             const { id } = req.params;
-            yield database_1.default.promise().query('DELETE FROM insumo WHERE id_insumo = ?', [id]);
-            res.json({ message: 'Insumo Eliminado' });
+            yield database_1.default.promise().query('DELETE FROM producto WHERE id_producto = ?', [id]);
+            res.json({ message: 'Producto Eliminado' });
         });
     }
     update(req, res) {
         return __awaiter(this, void 0, void 0, function* () {
             const { id } = req.params;
-            yield database_1.default.promise().query('UPDATE insumo set ? WHERE id_insumo= ?', [req.body, id]);
-            res.json({ message: 'insumo actualizando ' });
+            yield database_1.default.promise().query('UPDATE producto set ? WHERE id_producto= ?', [req.body, id]);
+            res.json({ message: 'Producto actualizando ' });
         });
     }
 }
-exports.gamesController = new GamesController();
+exports.productosController = new ProductosController();
