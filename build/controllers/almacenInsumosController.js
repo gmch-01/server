@@ -34,7 +34,7 @@ class AlmacenInsumoController {
         });
     }
     create(req, res) {
-        database_1.default.query('INSERT INTO inventario_insumo set ?', [req.body]);
+        database_1.default.query('INSERT INTO kardex_insumo set ?', [req.body]);
         console.log(req.body);
         res.json({ message: 'registro de insumo guardado' });
     }

@@ -20,7 +20,7 @@ class AlmacenInsumoController {
     }
 
     public create(req: Request, res: Response) {
-        pool.query('INSERT INTO inventario_insumo set ?', [req.body])
+        pool.query('INSERT INTO kardex_insumo set ?', [req.body])
         console.log(req.body);
         res.json({ message: 'registro de insumo guardado' })
     }
