@@ -9,6 +9,7 @@ import almacen_prod_finRoutes from './routes/almacen_prod_finRoutes';
 import almacenInsumosRoutes from './routes/almacen_insRoutes';
 import productosRoutes from './routes/productoRoutes'
 import recetasRoutes from './routes/recetasRoutes';
+import hojaprodRoutes from './routes/hojaprodRoutes';
 class Server {
 
     public app: Application;
@@ -36,7 +37,8 @@ class Server {
         this.app.use('/api/almacenfin', almacen_prod_finRoutes);
         this.app.use('/api/almacenins', almacenInsumosRoutes);
         this.app.use('/api/productos', productosRoutes);
-        this.app.use('/api/recetas', recetasRoutes)
+        this.app.use('/api/recetas', recetasRoutes); 
+        this.app.use('/api/hojaprod', hojaprodRoutes);
     }
 
     start(): void {

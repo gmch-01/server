@@ -13,6 +13,7 @@ const almacen_prod_finRoutes_1 = __importDefault(require("./routes/almacen_prod_
 const almacen_insRoutes_1 = __importDefault(require("./routes/almacen_insRoutes"));
 const productoRoutes_1 = __importDefault(require("./routes/productoRoutes"));
 const recetasRoutes_1 = __importDefault(require("./routes/recetasRoutes"));
+const hojaprodRoutes_1 = __importDefault(require("./routes/hojaprodRoutes"));
 class Server {
     constructor() {
         this.app = (0, express_1.default)();
@@ -34,6 +35,7 @@ class Server {
         this.app.use('/api/almacenins', almacen_insRoutes_1.default);
         this.app.use('/api/productos', productoRoutes_1.default);
         this.app.use('/api/recetas', recetasRoutes_1.default);
+        this.app.use('/api/hojaprod', hojaprodRoutes_1.default);
     }
     start() {
         this.app.listen(this.app.get('port'), () => {

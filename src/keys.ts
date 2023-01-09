@@ -1,3 +1,4 @@
+/*
 export default {
 
     database: {
@@ -7,8 +8,8 @@ export default {
         database: 'maxisoft_db'
     }
 }
+*/
 
-/*
 export default {
 
     database: {
@@ -18,4 +19,4 @@ export default {
         database: 'maxisoft_db'
     }
 }
-*/
+
