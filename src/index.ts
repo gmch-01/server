@@ -10,6 +10,9 @@ import almacenInsumosRoutes from './routes/almacen_insRoutes';
 import productosRoutes from './routes/productoRoutes'
 import recetasRoutes from './routes/recetasRoutes';
 import hojaprodRoutes from './routes/hojaprodRoutes';
+import inventarioprodRoutes from './routes/inventario_prodRoutes'
+import inventarioinsRoutes from './routes/inventario_insRoutes'
+import controlUnoRoutes from './routes/controlUnoRoutes';
 class Server {
 
     public app: Application;
@@ -21,7 +24,7 @@ class Server {
     }
 
     config(): void {
-        this.app.set('port', process.env.PORT || 3000);
+        this.app.set('port', process.env.PORT || 3000); 
         this.app.use(morgan('dev'));
         this.app.use(cors());
         this.app.use(express.json());
@@ -39,6 +42,9 @@ class Server {
         this.app.use('/api/productos', productosRoutes);
         this.app.use('/api/recetas', recetasRoutes); 
         this.app.use('/api/hojaprod', hojaprodRoutes);
+        this.app.use('/api/inventarioprod', inventarioprodRoutes);
+        this.app.use('/api/inventarioins', inventarioinsRoutes);
+        this.app.use('/api/control', controlUnoRoutes)
     }
 
     start(): void {
