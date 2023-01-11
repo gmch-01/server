@@ -5,7 +5,7 @@ import pool from '../database';
 
 class InventarioInsController {
     public async list(req: Request, res: Response) {
-        const [almacenfin] = await pool.promise().query('SELECT id_inv_ins, insumo.nombre AS insumoInv, fecha_venc, cantidad_actual FROM maxisoft_db.inventario_insumo INNER JOIN insumo ON tipo_insumo = insumo.id_insumo ORDER BY cantidad_actual DESC;');
+        const [almacenfin] = await pool.promise().query('SELECT id_inv_ins, insumo.nombre AS insumoInv, fecha_venc, cantidad_actual FROM maxisoft_db.inventario_insumo INNER JOIN insumo ON tipo_insumo = insumo.id_insumo ORDER BY cantidad_actual ASC;');
         res.json(almacenfin)
     }
     public async getOne(req: Request, res: Response): Promise<any> {

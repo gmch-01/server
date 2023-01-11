@@ -1,21 +1,21 @@
 "use strict";
-/*
-export default {
-
+Object.defineProperty(exports, "__esModule", { value: true });
+exports.default = {
     database: {
         host: 'localhost',
         user: 'root',
         password: '76525205G+c',
         database: 'maxisoft_db'
     }
-}
-*/
-Object.defineProperty(exports, "__esModule", { value: true });
-exports.default = {
+};
+/*
+export default {
+
     database: {
         host: 'localhost',
         user: 'root',
         password: '76525205',
         database: 'maxisoft_db'
     }
-};
+}
+*/

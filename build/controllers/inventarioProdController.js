@@ -17,7 +17,7 @@ const database_1 = __importDefault(require("../database"));
 class InventarioProdController {
     list(req, res) {
         return __awaiter(this, void 0, void 0, function* () {
-            const [almacenfin] = yield database_1.default.promise().query('SELECT id_inv_producto, producto.nombre AS productoInv, fecha_vencimiento, cantidad_actual FROM inventario_producto INNER JOIN producto ON inventario_producto.tipo_prod = producto.id_producto ORDER BY cantidad_actual DESC;');
+            const [almacenfin] = yield database_1.default.promise().query('SELECT id_inv_producto, producto.nombre AS productoInv, fecha_vencimiento, cantidad_actual FROM inventario_producto INNER JOIN producto ON inventario_producto.tipo_prod = producto.id_producto ORDER BY cantidad_actual ASC;');
             res.json(almacenfin);
         });
     }
