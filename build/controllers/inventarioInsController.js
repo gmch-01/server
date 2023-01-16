@@ -48,7 +48,7 @@ class InventarioInsController {
     update(req, res) {
         return __awaiter(this, void 0, void 0, function* () {
             const { id } = req.params;
-            yield database_1.default.promise().query('UPDATE inventario_insumo set ? WHERE id_inv_insumo= ?', [req.body, id]);
+            yield database_1.default.promise().query('UPDATE inventario_insumo set ? WHERE id_inv_ins= ?', [req.body, id]);
             res.json({ message: 'Registro actualizando ' });
         });
     }

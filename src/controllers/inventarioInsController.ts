@@ -33,7 +33,7 @@ class InventarioInsController {
 
     public async update(req: Request, res: Response): Promise<void> {
         const { id } = req.params;
-        await pool.promise().query('UPDATE inventario_insumo set ? WHERE id_inv_insumo= ?', [req.body, id])
+        await pool.promise().query('UPDATE inventario_insumo set ? WHERE id_inv_ins= ?', [req.body, id])
         res.json({ message: 'Registro actualizando ' })
     }
 }
