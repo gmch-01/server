@@ -17,6 +17,7 @@ const hojaprodRoutes_1 = __importDefault(require("./routes/hojaprodRoutes"));
 const inventario_prodRoutes_1 = __importDefault(require("./routes/inventario_prodRoutes"));
 const inventario_insRoutes_1 = __importDefault(require("./routes/inventario_insRoutes"));
 const controlUnoRoutes_1 = __importDefault(require("./routes/controlUnoRoutes"));
+const posiblesRoutes_1 = __importDefault(require("./routes/posiblesRoutes"));
 class Server {
     constructor() {
         this.app = (0, express_1.default)();
@@ -42,6 +43,7 @@ class Server {
         this.app.use('/api/inventarioprod', inventario_prodRoutes_1.default);
         this.app.use('/api/inventarioins', inventario_insRoutes_1.default);
         this.app.use('/api/control', controlUnoRoutes_1.default);
+        this.app.use('/api/posibles', posiblesRoutes_1.default);
     }
     start() {
         this.app.listen(this.app.get('port'), () => {
