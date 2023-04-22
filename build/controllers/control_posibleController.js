@@ -17,7 +17,7 @@ const database_1 = __importDefault(require("../database"));
 class PosiblesController {
     list(req, res) {
         return __awaiter(this, void 0, void 0, function* () {
-            const [posibles] = yield database_1.default.promise().query('SELECT producto.nombre AS producto, insumo.nombre AS insumo, inventario_insumo.cantidad_actual, receta.cantidad, (inventario_insumo.cantidad_actual - receta.cantidad) AS posibles FROM receta INNER JOIN insumo INNER JOIN producto INNER JOIN inventario_insumo WHERE receta.id_producto = producto.id_producto AND receta.id_insumo = insumo.id_insumo AND receta.id_insumo = inventario_insumo.tipo_insumo ORDER BY posibles ASC;');
+            const [posibles] = yield database_1.default.promise().query('SELECT producto.nombre AS producto, insumo.nombre AS insumo, inventario_insumo.cantidad_actual, receta.cantidad AS cantidad_necesaria, CASE WHEN ( (inventario_insumo.cantidad_actual - receta.cantidad) ) <0 THEN 0 ELSE (inventario_insumo.cantidad_actual - receta.cantidad) END AS posibles FROM receta INNER JOIN insumo INNER JOIN producto INNER JOIN inventario_insumo WHERE receta.id_producto = producto.id_producto AND receta.id_insumo = insumo.id_insumo AND receta.id_insumo = inventario_insumo.tipo_insumo ORDER BY posibles ASC;');
             res.json(posibles);
         });
     }
