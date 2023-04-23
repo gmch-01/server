@@ -17,7 +17,7 @@ const database_1 = __importDefault(require("../database"));
 class AlmacenInsumoController {
     list(req, res) {
         return __awaiter(this, void 0, void 0, function* () {
-            const [almaceninsumo] = yield database_1.default.promise().query('SELECT * FROM kardex_insumo ');
+            const [almaceninsumo] = yield database_1.default.promise().query('SELECT kardex_insumo.id_det_insumo, fecha_entrada, proveedor, cantidad, insumo.nombre AS nombre, peso, usuario, fecha_vencimiento FROM kardex_insumo INNER JOIN insumo WHERE kardex_insumo.id_insumo = insumo.id_insumo;');
             res.json(almaceninsumo);
         });
     }

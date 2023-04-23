@@ -5,7 +5,7 @@ import pool from '../database';
 
 class AlmacenInsumoController {
     public async list(req: Request, res: Response) {
-        const [almaceninsumo] = await pool.promise().query('SELECT * FROM kardex_insumo ');
+        const [almaceninsumo] = await pool.promise().query('SELECT kardex_insumo.id_det_insumo, fecha_entrada, proveedor, cantidad, insumo.nombre AS nombre, peso, usuario, fecha_vencimiento FROM kardex_insumo INNER JOIN insumo WHERE kardex_insumo.id_insumo = insumo.id_insumo;');
         res.json(almaceninsumo)
     }
     public async getOne(req: Request, res: Response): Promise<any> {
