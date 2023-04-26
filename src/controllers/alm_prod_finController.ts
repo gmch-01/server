@@ -5,7 +5,7 @@ import pool from '../database';
 
 class AlmacenFinController {
     public async list(req: Request, res: Response) {
-        const [almacenfin] = await pool.promise().query('SELECT * FROM kardex_producto ');
+        const [almacenfin] = await pool.promise().query('SELECT kardex_producto.fecha_registro, kardex_producto.cantidad, producto.nombre AS producto, kardex_producto.encargado, kardex_producto.fecha_vencimiento FROM maxisoft_db.kardex_producto INNER JOIN producto WHERE kardex_producto.id_producto = producto.id_producto;');
         res.json(almacenfin)
     }
     public async getOne(req: Request, res: Response): Promise<any> {

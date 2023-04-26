@@ -17,7 +17,7 @@ const database_1 = __importDefault(require("../database"));
 class AlmacenFinController {
     list(req, res) {
         return __awaiter(this, void 0, void 0, function* () {
-            const [almacenfin] = yield database_1.default.promise().query('SELECT * FROM kardex_producto ');
+            const [almacenfin] = yield database_1.default.promise().query('SELECT kardex_producto.fecha_registro, kardex_producto.cantidad, producto.nombre AS producto, kardex_producto.encargado, kardex_producto.fecha_vencimiento FROM maxisoft_db.kardex_producto INNER JOIN producto WHERE kardex_producto.id_producto = producto.id_producto;');
             res.json(almacenfin);
         });
     }
