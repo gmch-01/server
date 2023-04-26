@@ -8,6 +8,10 @@ class InventarioInsController {
         const [almacenfin] = await pool.promise().query('SELECT id_inv_ins, insumo.nombre AS insumoInv, fecha_venc, cantidad_actual,  insumo.unidad AS unidad FROM maxisoft_db.inventario_insumo INNER JOIN insumo ON tipo_insumo = insumo.id_insumo ORDER BY cantidad_actual ASC;');
         res.json(almacenfin)
     }
+    public async listesp(req: Request, res: Response) {
+        const [almacenfin] = await pool.promise().query('SELECT  insumo.nombre, SUM(cantidad_actual) AS existencia, fecha_venc   FROM maxisoft_db.inventario_insumo INNER JOIN insumo ON tipo_insumo = insumo.id_insumo GROUP BY tipo_insumo;');
+        res.json(almacenfin)
+    }
     public async getOne(req: Request, res: Response): Promise<any> {
         const { id } = req.params;
         const inventarioprod = await pool.promise().query('SELECT * FROM inventario_producto WHERE id_inv_insumo = ?', [id])
