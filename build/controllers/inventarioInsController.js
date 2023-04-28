@@ -23,7 +23,7 @@ class InventarioInsController {
     }
     listesp(req, res) {
         return __awaiter(this, void 0, void 0, function* () {
-            const [almacenfin] = yield database_1.default.promise().query('SELECT  insumo.nombre, SUM(cantidad_actual) AS existencia, fecha_venc   FROM maxisoft_db.inventario_insumo INNER JOIN insumo ON tipo_insumo = insumo.id_insumo GROUP BY tipo_insumo;');
+            const [almacenfin] = yield database_1.default.promise().query('SELECT  insumo.nombre, SUM(cantidad_actual) AS existencia, fecha_venc, insumo.unidad   FROM maxisoft_db.inventario_insumo INNER JOIN insumo ON tipo_insumo = insumo.id_insumo GROUP BY tipo_insumo;');
             res.json(almacenfin);
         });
     }
