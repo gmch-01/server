@@ -21,6 +21,12 @@ class InventarioProdController {
             res.json(almacenfin);
         });
     }
+    listesp(req, res) {
+        return __awaiter(this, void 0, void 0, function* () {
+            const [almacenfin] = yield database_1.default.promise().query('SELECT id_inv_producto, producto.nombre AS productoInv, fecha_vencimiento, SUM(cantidad_actual) AS existencia FROM inventario_producto INNER JOIN producto ON inventario_producto.tipo_prod = producto.id_producto GROUP BY producto.nombre;');
+            res.json(almacenfin);
+        });
+    }
     getOne(req, res) {
         return __awaiter(this, void 0, void 0, function* () {
             const { id } = req.params;

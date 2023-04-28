@@ -13,6 +13,7 @@ class InventarioProdRoutes {
 
     config(): void {
         this.router.get('/', inventarioprodController.list)
+        this.router.get('/esp', inventarioprodController.listesp)
         this.router.get('/:id', inventarioprodController.getOne)
         this.router.post('/', inventarioprodController.create)
         this.router.delete('/:id', inventarioprodController.delete)

@@ -9,6 +9,7 @@ class InventarioProdRoutes {
     }
     config() {
         this.router.get('/', inventarioProdController_1.inventarioprodController.list);
+        this.router.get('/esp', inventarioProdController_1.inventarioprodController.listesp);
         this.router.get('/:id', inventarioProdController_1.inventarioprodController.getOne);
         this.router.post('/', inventarioProdController_1.inventarioprodController.create);
         this.router.delete('/:id', inventarioProdController_1.inventarioprodController.delete);
