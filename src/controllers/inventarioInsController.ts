@@ -9,7 +9,11 @@ class InventarioInsController {
         res.json(almacenfin)
     }
     public async listesp(req: Request, res: Response) {
-        const [almacenfin] = await pool.promise().query('SELECT  insumo.nombre, SUM(cantidad_actual) AS existencia, fecha_venc, insumo.unidad   FROM maxisoft_db.inventario_insumo INNER JOIN insumo ON tipo_insumo = insumo.id_insumo GROUP BY tipo_insumo;');
+        const [almacenfin] = await pool.promise().query('SELECT  insumo.nombre, SUM(cantidad_actual) AS existencia, fecha_venc, insumo.unidad, insumo.max, ROUND(((SUM(cantidad_actual)/insumo.max)*100),1) AS porcentaje, (insumo.max - SUM(cantidad_actual)) AS faltante FROM maxisoft_db.inventario_insumo INNER JOIN insumo ON tipo_insumo = insumo.id_insumo GROUP BY tipo_insumo;');
+        res.json(almacenfin)
+    }
+    public async datachart(req: Request, res: Response) {
+        const [almacenfin] = await pool.promise().query('SELECT SUM(cantidad_actual) AS existencia, (SUM(insumo.max)-SUM(cantidad_actual)) AS falta FROM maxisoft_db.inventario_insumo INNER JOIN insumo ON tipo_insumo = insumo.id_insumo ;');
         res.json(almacenfin)
     }
     public async getOne(req: Request, res: Response): Promise<any> {
