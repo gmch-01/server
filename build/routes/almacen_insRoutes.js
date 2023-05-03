@@ -9,6 +9,7 @@ class IndexRoutes {
     }
     config() {
         this.router.get('/', almacenInsumosController_1.almacenInsumoController.list);
+        this.router.get('/venc', almacenInsumosController_1.almacenInsumoController.listesp);
         this.router.get('/:id', almacenInsumosController_1.almacenInsumoController.getOne);
         this.router.post('/', almacenInsumosController_1.almacenInsumoController.create);
         this.router.delete('/:id', almacenInsumosController_1.almacenInsumoController.delete);

@@ -21,6 +21,12 @@ class AlmacenInsumoController {
             res.json(almaceninsumo);
         });
     }
+    listesp(req, res) {
+        return __awaiter(this, void 0, void 0, function* () {
+            const [almaceninsumo] = yield database_1.default.promise().query('SELECT kardex_insumo.id_det_insumo, fecha_entrada, proveedor, cantidad, insumo.nombre AS nombre, peso, usuario, fecha_vencimiento, DATEDIFF(STR_TO_DATE(fecha_vencimiento, "%Y-%m-%d"), CURDATE()) AS dias_restantes FROM kardex_insumo INNER JOIN insumo WHERE kardex_insumo.id_insumo = insumo.id_insumo ;');
+            res.json(almaceninsumo);
+        });
+    }
     getOne(req, res) {
         return __awaiter(this, void 0, void 0, function* () {
             const { id } = req.params;

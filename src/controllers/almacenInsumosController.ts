@@ -8,6 +8,13 @@ class AlmacenInsumoController {
         const [almaceninsumo] = await pool.promise().query('SELECT kardex_insumo.id_det_insumo, fecha_entrada, proveedor, cantidad, insumo.nombre AS nombre, peso, usuario, fecha_vencimiento FROM kardex_insumo INNER JOIN insumo WHERE kardex_insumo.id_insumo = insumo.id_insumo;');
         res.json(almaceninsumo)
     }
+    public async listesp(req: Request, res: Response) {
+        const [almaceninsumo] = await pool.promise().query('SELECT kardex_insumo.id_det_insumo, fecha_entrada, proveedor, cantidad, insumo.nombre AS nombre, peso, usuario, fecha_vencimiento, DATEDIFF(STR_TO_DATE(fecha_vencimiento, "%Y-%m-%d"), CURDATE()) AS dias_restantes FROM kardex_insumo INNER JOIN insumo WHERE kardex_insumo.id_insumo = insumo.id_insumo ;');
+        res.json(almaceninsumo)
+    }
+
+
+
     public async getOne(req: Request, res: Response): Promise<any> {
         const { id } = req.params;
         const almaceninsumo = await pool.promise().query('SELECT * FROM kardex_insumo WHERE id_det_insumo = ?', [id])
