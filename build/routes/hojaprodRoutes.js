@@ -9,6 +9,7 @@ class HojaProdRoutes {
     }
     config() {
         this.router.get('/', hojaproduccionController_1.hojaprodController.list);
+        this.router.get('/esp', hojaproduccionController_1.hojaprodController.listesp);
         this.router.get('/:id', hojaproduccionController_1.hojaprodController.getOne);
         this.router.post('/', hojaproduccionController_1.hojaprodController.create);
         this.router.delete('/:id', hojaproduccionController_1.hojaprodController.delete);

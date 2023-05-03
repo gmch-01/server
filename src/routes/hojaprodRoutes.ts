@@ -15,6 +15,7 @@ class HojaProdRoutes {
 
     config(): void {
         this.router.get('/', hojaprodController.list)
+        this.router.get('/esp', hojaprodController.listesp)
         this.router.get('/:id', hojaprodController.getOne)
         this.router.post('/', hojaprodController.create)
         this.router.delete('/:id', hojaprodController.delete)
