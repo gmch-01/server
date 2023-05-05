@@ -33,10 +33,28 @@ class InventarioInsController {
             res.json(almacenfin);
         });
     }
+    lotes(req, res) {
+        return __awaiter(this, void 0, void 0, function* () {
+            const [almacenfin] = yield database_1.default.promise().query('SELECT id_inv_ins, insumo.nombre, lote, SUM(cantidad_actual) AS existencia, IF(DATEDIFF(STR_TO_DATE(fecha_venc, "%Y-%m-%d"), CURDATE()) < 0, 0, DATEDIFF(STR_TO_DATE(fecha_venc, "%Y-%m-%d"), CURDATE())) AS dias_restantes FROM maxisoft_db.inventario_insumo INNER JOIN insumo ON inventario_insumo.tipo_insumo = insumo.id_insumo WHERE STR_TO_DATE(fecha_venc, "%Y-%m-%d") BETWEEN CURDATE() AND DATE_ADD(CURDATE(), INTERVAL 2 MONTH) GROUP BY insumo.nombre, lote HAVING existencia > 0 AND dias_restantes > 0 ORDER BY dias_restantes;');
+            res.json(almacenfin);
+        });
+    }
     getOne(req, res) {
         return __awaiter(this, void 0, void 0, function* () {
             const { id } = req.params;
             const inventarioprod = yield database_1.default.promise().query('SELECT * FROM inventario_producto WHERE id_inv_insumo = ?', [id]);
+            if (inventarioprod.length > 0) {
+                return res.json(inventarioprod[0]);
+            }
+            res.status(404).json({ text: "El producto no existe" });
+            console.log(inventarioprod);
+            res.json({ text: 'producto encontrado ' });
+        });
+    }
+    getCharts(req, res) {
+        return __awaiter(this, void 0, void 0, function* () {
+            const { insumo } = req.params;
+            const inventarioprod = yield database_1.default.promise().query('SELECT id_inv_ins, insumo.nombre, lote, SUM(cantidad_actual) AS existencia FROM maxisoft_db.inventario_insumo INNER JOIN insumo ON inventario_insumo.tipo_insumo = insumo.id_insumo WHERE insumo.nombre= ? GROUP BY insumo.nombre, lote ', [insumo]);
             if (inventarioprod.length > 0) {
                 return res.json(inventarioprod[0]);
             }
