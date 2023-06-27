@@ -15,6 +15,7 @@ class GamesRoutes {
 
     config(): void {
         this.router.get('/', recetasController.list)
+        this.router.get('/esp', recetasController.listEsp)
         this.router.get('/:id', recetasController.getOne)
         this.router.post('/', recetasController.create)
         this.router.delete('/:id', recetasController.delete)

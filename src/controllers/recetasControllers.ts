@@ -8,6 +8,11 @@ class RecetasController {
         const [receta] = await pool.promise().query('SELECT id_receta, producto.nombre AS producto,  insumo.nombre AS insumo, receta.cantidad, insumo.unidad AS unidad  FROM receta INNER JOIN (producto, insumo) WHERE receta.id_producto = producto.id_producto AND receta.id_insumo = insumo.id_insumo;');
         res.json(receta)
     }
+    public async listEsp(req: Request, res: Response) {
+        const [receta] = await pool.promise().query('SELECT MIN(receta.id_receta) AS id_receta, producto.nombre AS producto FROM receta INNER JOIN producto ON receta.id_producto = producto.id_producto GROUP BY producto.nombre;');
+        res.json(receta)
+    }
+
 
     public async getOne(req: Request, res: Response): Promise<any> {
         const { id } = req.params;

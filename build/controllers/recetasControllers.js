@@ -21,6 +21,12 @@ class RecetasController {
             res.json(receta);
         });
     }
+    listEsp(req, res) {
+        return __awaiter(this, void 0, void 0, function* () {
+            const [receta] = yield database_1.default.promise().query('SELECT MIN(receta.id_receta) AS id_receta, producto.nombre AS producto FROM receta INNER JOIN producto ON receta.id_producto = producto.id_producto GROUP BY producto.nombre;');
+            res.json(receta);
+        });
+    }
     getOne(req, res) {
         return __awaiter(this, void 0, void 0, function* () {
             const { id } = req.params;
